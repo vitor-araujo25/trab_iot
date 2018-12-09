@@ -1,0 +1,58 @@
+#include <ESP8266WiFi.h>
+
+// WiFi definitions
+const char* ssid = "labnet (The Lab)";
+const char* password = "l4bn3t00";
+const char* host = "172.22.15.2";
+const int httpPort = 8000;
+const int ledWifiPin = 15;
+const int ledConPin = 2;//12;
+int ledWifiState = LOW;
+int ledConState = LOW;
+String mac = "";
+
+int ldrValue = 0;
+int outputValue = 0;
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP, "a.ntp.br", -7200, 60000);
+
+// checking if WiFi is working properly
+void checkWifi(){
+  if(WiFi.status() != WL_CONNECTED){
+    ledWifiState = LOW;
+    ledConState = LOW;
+    digitalWrite(ledConPin, ledConState);
+    digitalWrite(ledWifiPin, ledWifiState);
+    connectWifi();
+  }
+}
+
+// estabilishes connection to the WiFi declared earlier
+void connectWifi() {
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
+
+  while(WiFi.status() != WL_CONNECTED){
+    delay(100);
+    Serial.print(".");
+    if (ledWifiState == LOW) {
+      ledWifiState = HIGH;
+    }
+    else {
+      ledWifiState = LOW;
+    }
+    digitalWrite(ledWifiPin, ledWifiState);
+  }
+  ledWifiState = HIGH;
+  digitalWrite(ledWifiPin, ledWifiState);
+  Serial.println();
+  Serial.println("WiFi connected!");
+  Serial.print("IP address: ");
+  Serial.println(WiFi.localIP());
+  mac = WiFi.macAddress();
+  Serial.print("MAC address: ");
+  Serial.println(mac);
+}
+
