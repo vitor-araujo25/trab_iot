@@ -26,8 +26,8 @@ const char* password = "l4bn3t00";
 const char* BROKER_MQTT = "IP_DO_RASPBERRY"; 
 int BROKER_PORT = 1883; 
  
-WiFiClient espClient; // Cria o objeto espClient
-PubSubClient MQTT(espClient); // Instancia o Cliente MQTT passando o objeto espClient
+WiFiClient espClient; 
+PubSubClient MQTT(espClient);
 
 //TODO:verificar o tipo de output do sensor de presença 
 char sensorOutput = '0';  
@@ -141,6 +141,7 @@ void loop()
     
     checkConnections();
 
+    //lê input da serial e usa como se fosse dado do sensor (para teste)
     while(Serial.available()){
         sensorOutput = Serial.readString();
     }
