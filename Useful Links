@@ -4,3 +4,4 @@ Guide to MQTT: https://www.filipeflop.com/blog/controle-monitoramento-iot-nodemc
 Broker MQTT Raspberry PI: https://www.filipeflop.com/blog/broker-mqtt-com-raspberry-pi-zero-w/
 Base Code for Presence Sensor: https://www.instructables.com/id/Presence-Sensor-With-NodeMCU-ESP8266/
 PubSubClient - MQTT library for ESP8266: https://pubsubclient.knolleary.net/api.html
+Using HC-SR04 sensor as a Presence Sensor: https://macduino.blogspot.com/2015/02/hc-sr04-motion-detection.html
